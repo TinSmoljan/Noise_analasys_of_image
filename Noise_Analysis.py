@@ -1,6 +1,7 @@
 import numpy as np # Koristimo numpy biblioteku za namistanje opacity slike 
 import cv2 # Koristimo opencv biblioteku za prikaz i rad sa slikama
 
+
 mod_slike = 1  # Ocemo li sliku koristiti u grayscaleu ili sa bojama, 0 = grayscale, 1 = boje
 image = cv2.imread("slika.jpg",mod_slike) # Ucitavamo nasu sliku sa zadanim modom
 
@@ -33,7 +34,7 @@ image_sound = np.array(sound_resized, dtype=np.float)
 image_sound /= 255.0
  
 opacity = 1 # Sa ovim odredujemo koliko ce biti opacity, od 0 - 1
-output = ((image * (1-opacity)) + (image_sound * opacity))
+output = ((image * (1-opacity)) + (image_sound * opacity)) 
 
 # Ispis originalne i modificirane slike na ekran
 cv2.imshow("Original", image_resized)
@@ -41,5 +42,6 @@ cv2.imshow("Noise analysis slika", output)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
 
-cv2.imwrite("modificirana_slika.jpg", output)
+cv2.imwrite("slika.jpg", image_resized) #spremanje originalne slike na manju velicinu
+cv2.imwrite("modificirana_slika.jpg", output * 255.0) #spremanje filtrirane slike na manju velicinu
 
